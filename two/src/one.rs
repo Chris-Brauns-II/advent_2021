@@ -11,8 +11,6 @@ fn main() {
 
   let input_list: Vec<&str> = contents.split("\n").collect();
   let re = Regex::new(r"^(forward|down|up) ([0-9])$").unwrap();
-  
-  let mut aim: u32 = 0;
 
   let mut x: u32 = 0;
   let mut y: u32 = 0;
@@ -23,12 +21,9 @@ fn main() {
       let magnitude: u32 = (&cap[2]).parse::<u32>().unwrap();
 
       match direction {
-        "forward" => {
-          x += magnitude;
-          y += magnitude * aim
-        },
-        "down" => aim += magnitude,
-        "up" => aim -= magnitude,
+        "forward" => x += magnitude,
+        "down" => y += magnitude,
+        "up" => y -= magnitude,
         _ => println!("Yikes")
       }
     }
